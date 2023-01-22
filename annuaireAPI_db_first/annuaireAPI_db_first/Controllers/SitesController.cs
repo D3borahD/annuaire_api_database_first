@@ -55,9 +55,32 @@ namespace annuaireAPI_db_first.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> updateSite(int id, [Bind("Id, Name")] Site site)
         {
+           if (id !=site.Id)
+            {
+                return NotFound();
+            }
+           if(ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(site);
+                    await _context.SaveChangesAsync();
+                    return Ok("updated site");
+                   
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("", "Unable to save changes.");
+                }
+            }
+            return RedirectToAction(nameof(updateSite), site);
+
+
         }
+
+       
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
