@@ -12,30 +12,28 @@ namespace annuaireAPI_db_first.Models;
 
 public partial class Employee
 {
-    [DataMember]
+ 
     public int Id { get; set; }
-    [DataMember]
+   
     public string Firstname { get; set; } = null!;
-    [DataMember]
+ 
     public string Lastname { get; set; } = null!;
-    [DataMember]
+
     public string Landline { get; set; } = null!;
-    [DataMember]
+
     public string Mobile { get; set; } = null!;
-    [DataMember]
+
     public string Email { get; set; } = null!;
-    [DataMember]
+
     public int SiteId { get; set; }
-    [DataMember]
+
     public int DepartmentId { get; set; }
 
 
     [JsonIgnore]
-    [ForeignKey("DepartmentId")]
-    public virtual Department Department { get; set; } = null!;
+    public virtual Department? Department { get; set; }
 
     [JsonIgnore]
-    [ForeignKey("SiteId")]
-    public virtual Site Site { get; set; } = null!;
+    public virtual Site? Site { get; set; }
 }
 

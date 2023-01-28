@@ -41,19 +41,18 @@ namespace annuaireAPI_db_first.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<ActionResult<Employee>> addOneEmployee(Employee employee)
+        public ActionResult addOneEmployee(Employee employee)
         {
-           /* _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(addOneEmployee), new { id = employee.Id }, employee);*/
-           
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
+            return Ok(employee);
 
-            return Ok(employee.Id);
-        }
+            //return CreatedAtAction(nameof(addOneEmployee), new { id = employee.Id }, employee);
+    }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public ActionResult updateEmployee(int id, [Bind("Id, Firstname, Lastname, Landline, Mobile, Email, SiteId, DepartmentId")] Employee employee)
+        public ActionResult updateEmployee(int id,Employee employee)
         {
             if (id != employee.Id)
             {
