@@ -24,36 +24,60 @@ namespace annuaireAPI_db_first.Controllers
         [HttpGet]
         public IEnumerable<Site> getAllSites()
         {
-            return _context.Sites.ToList();
+            try
+            {
+                return _context.Sites.ToList();
+            }
+            catch (Exception ex)
+            {
+                return Enumerable.Empty<Site>();
+            }
+            
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult getSiteById(int id)
         {
-            var site =  _context.Sites.Where(s => s.Id.Equals(id)).FirstOrDefault();
-            if (site == null)
+            try
             {
-                return NotFound();
-            }
-            else
+                var site = _context.Sites.Where(s => s.Id.Equals(id)).FirstOrDefault();
+                if (site == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(site);
+                }
+            } catch(Exception ex)
             {
-                return Ok(site);
+                return BadRequest(ex.Message);
             }
+           
         }
+
+    
 
         // POST api/values
         [HttpPost]
-        public ActionResult addOneSite(Site site)
+        public ActionResult addSite(Site site)
         {
             // vérifier les données reçues du navigateur ...
             // ...
-          //  if(IDataTokensMetadata != site.a)
+            //  if(IDataTokensMetadata != site.a)
 
-        
-            _context.Sites.Add(site);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(addOneSite),new {id = site.Id}, site);
+            try {
+                _context.Sites.Add(site);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(addSite), new { id = site.Id }, site);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes.");
+                return BadRequest(ex);
+            }
+            
         }
 
         // PUT api/values/5
@@ -90,9 +114,17 @@ namespace annuaireAPI_db_first.Controllers
             {
                 return NotFound(nameof(deleteSite));
             }
-            _context.Sites.Remove(site);
-            _context.SaveChanges();
-            return Ok();
+            try
+            {
+                _context.Sites.Remove(site);
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
     }
 

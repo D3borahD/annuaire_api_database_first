@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 //using System.ComponentModel.DataAnnotations.Schema;
@@ -15,9 +16,8 @@ public partial class Employee
  
     public int Id { get; set; }
    
-    public string Firstname { get; set; } = null!;
- 
     public string Lastname { get; set; } = null!;
+    public string Firstname { get; set; } = null!;
 
     public string Landline { get; set; } = null!;
 
@@ -25,7 +25,9 @@ public partial class Employee
 
     public string Email { get; set; } = null!;
 
+  
     public int SiteId { get; set; }
+
 
     public int DepartmentId { get; set; }
 

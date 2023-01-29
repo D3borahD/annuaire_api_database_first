@@ -22,7 +22,14 @@ namespace annuaireAPI_db_first.Controllers
         [HttpGet]
         public IEnumerable<Department> getAllDepartments()
         {
-            return _context.Departments.ToList();
+            try
+            {
+                return _context.Departments.ToList();
+            }
+            catch(Exception ex)
+            {
+                return Enumerable.Empty<Department>();
+            }
         }
 
 
@@ -30,24 +37,41 @@ namespace annuaireAPI_db_first.Controllers
         [HttpGet("{id}")]
         public ActionResult getDepartmentById(int id)
         {
-            var department = _context.Departments.Where(s => s.Id.Equals(id)).FirstOrDefault();
-            if (department == null)
+            try
             {
-                return NotFound();
+                var department = _context.Departments.Where(s => s.Id.Equals(id)).FirstOrDefault();
+                if (department == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(department);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return Ok(department);
+                return BadRequest(ex.Message);
             }
+        
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult addOneDepartment(Department department)
+        public ActionResult addDepartment(Department department)
         {
-            _context.Departments.Add(department);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(addOneDepartment), new { id = department.Id }, department);
+            try
+            {
+                _context.Departments.Add(department);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(addDepartment), new { id = department.Id }, department);
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes.");
+                return BadRequest(ex);
+            }
+           
         }
 
         // PUT api/values/5
@@ -84,9 +108,17 @@ namespace annuaireAPI_db_first.Controllers
             {
                 return NotFound(nameof(deleteDepartment));
             }
-            _context.Departments.Remove(department);
-            _context.SaveChanges();
-            return Ok();
+            try
+            {
+                _context.Departments.Remove(department);
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
          }
     }
 }

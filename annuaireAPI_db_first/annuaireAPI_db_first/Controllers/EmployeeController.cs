@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Configuration;
+using System.Security.Policy;
 
 namespace annuaireAPI_db_first.Controllers
 {
@@ -20,9 +22,36 @@ namespace annuaireAPI_db_first.Controllers
         [HttpGet]
         public IEnumerable<Employee> getAllEmployees()
         {
+           // return _context.Employees.ToList();
             return _context.Employees.ToList();
+            //return employees;
         }
 
+        [HttpGet]
+        [Route("site/{siteId}")]
+        public IEnumerable<Employee> getEmployeesBySite(int siteId)
+        {
+            var employee = _context.Employees.Where(s => s.SiteId.Equals(siteId));
+
+            return employee;
+        }
+
+        [HttpGet]
+        [Route("department/{departmentId}")]
+        public IEnumerable<Employee> getEmployeesByDepartment(int departmentId)
+        {
+            var employee = _context.Employees.Where(s => s.DepartmentId.Equals(departmentId));
+
+            return employee;
+        }
+        [HttpGet]
+        [Route("lastname/{name}")]
+        public IEnumerable<Employee> getEmployeesByName(string name)
+        {
+            var employee = _context.Employees.Where(s => s.Firstname.Contains(name));
+
+            return employee;
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -43,11 +72,17 @@ namespace annuaireAPI_db_first.Controllers
         [HttpPost]
         public ActionResult addOneEmployee(Employee employee)
         {
-            _context.Employees.Add(employee);
-            _context.SaveChanges();
-            return Ok(employee);
-
-            //return CreatedAtAction(nameof(addOneEmployee), new { id = employee.Id }, employee);
+            try
+            {
+                _context.Employees.Add(employee);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(addOneEmployee), new { id = employee.Id }, employee);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes.");
+                return BadRequest(ex);
+            }
     }
 
         // PUT api/values/5
