@@ -1,9 +1,9 @@
 ﻿using annuaireAPI_db_first.Models;
-using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Configuration;
-using System.Security.Policy;
+//using Microsoft.EntityFrameworkCore;
+//using NuGet.Configuration;
+//using System.Security.Policy;
 
 namespace annuaireAPI_db_first.Controllers
 {
@@ -22,9 +22,7 @@ namespace annuaireAPI_db_first.Controllers
         [HttpGet]
         public IEnumerable<Employee> getAllEmployees()
         {
-           // return _context.Employees.ToList();
             return _context.Employees.ToList();
-            //return employees;
         }
 
         [HttpGet]
