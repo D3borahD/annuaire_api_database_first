@@ -25,9 +25,7 @@ public partial class Employee
 
     public string Email { get; set; } = null!;
 
-  
     public int SiteId { get; set; }
-
 
     public int DepartmentId { get; set; }
 

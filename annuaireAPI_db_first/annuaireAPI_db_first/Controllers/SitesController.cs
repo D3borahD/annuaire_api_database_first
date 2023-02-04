@@ -57,16 +57,10 @@ namespace annuaireAPI_db_first.Controllers
            
         }
 
-    
-
         // POST api/values
         [HttpPost]
         public ActionResult addSite(Site site)
         {
-            // vérifier les données reçues du navigateur ...
-            // ...
-            //  if(IDataTokensMetadata != site.a)
-
             try {
                 _context.Sites.Add(site);
                 _context.SaveChanges();
@@ -76,8 +70,7 @@ namespace annuaireAPI_db_first.Controllers
             {
                 ModelState.AddModelError("", "Unable to save changes.");
                 return BadRequest(ex);
-            }
-            
+            }  
         }
 
         // PUT api/values/5

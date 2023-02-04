@@ -18,7 +18,7 @@ namespace annuaireAPI_db_first.Controllers
             _context = context;
         }
 
-        // GET api/values/5
+        // GET api/values
         [HttpGet]
         public IEnumerable<Department> getAllDepartments()
         {

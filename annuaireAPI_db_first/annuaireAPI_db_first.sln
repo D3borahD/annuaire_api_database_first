@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "annuaireAPI_db_first", "annuaireAPI_db_first\annuaireAPI_db_first.csproj", "{40BFF2BF-3B34-4854-87B9-79A30BD8FB93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "annuaireAPI_db_first", "annuaireAPI_db_first\annuaireAPI_db_first.csproj", "{40BFF2BF-3B34-4854-87B9-79A30BD8FB93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "..\..\v2_annuaire\annuaire_cesi_td\WinFormsApp1\WinFormsApp1.csproj", "{4237C866-38D4-4BC2-A418-60150B8AF9B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{40BFF2BF-3B34-4854-87B9-79A30BD8FB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40BFF2BF-3B34-4854-87B9-79A30BD8FB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40BFF2BF-3B34-4854-87B9-79A30BD8FB93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4237C866-38D4-4BC2-A418-60150B8AF9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4237C866-38D4-4BC2-A418-60150B8AF9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4237C866-38D4-4BC2-A418-60150B8AF9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4237C866-38D4-4BC2-A418-60150B8AF9B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

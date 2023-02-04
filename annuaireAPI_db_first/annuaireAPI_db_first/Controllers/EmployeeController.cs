@@ -25,6 +25,7 @@ namespace annuaireAPI_db_first.Controllers
             return _context.Employees.ToList();
         }
 
+        // GET api/values/5
         [HttpGet]
         [Route("site/{siteId}")]
         public IEnumerable<Employee> getEmployeesBySite(int siteId)
@@ -34,6 +35,7 @@ namespace annuaireAPI_db_first.Controllers
             return employee;
         }
 
+        // GET api/values/5
         [HttpGet]
         [Route("department/{departmentId}")]
         public IEnumerable<Employee> getEmployeesByDepartment(int departmentId)
@@ -42,6 +44,8 @@ namespace annuaireAPI_db_first.Controllers
 
             return employee;
         }
+
+        // GET api/values/name
         [HttpGet]
         [Route("lastname/{name}")]
         public IEnumerable<Employee> getEmployeesByName(string name)
